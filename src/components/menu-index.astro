@@ -1,6 +1,6 @@
 ---
 import Logo from "./svg/Logo.astro";
-
+import BridgeURL from "../design-patterns/BridgeURL"
 
 const { pathname } = Astro.url;
 
@@ -9,7 +9,14 @@ function isActiveRoute(route: string): string {
   if (pathname.startsWith(route) && route !== "/") return "active";
   return "";
 }
+const pkg = {
+		name: 'svelte',
+		version: 3,
+		speed: 'blazing',
+		website: 'https://svelte.dev'
+	};
 ---
+
 <div class="menu">
     <a href="/">
       <Logo
@@ -17,6 +24,8 @@ function isActiveRoute(route: string): string {
       />
     </a>
     <div class="nav">
+
+
         <div class="itemsMenu">
             <a class={`bold-text item ${isActiveRoute("/")}`} href="/"> INICIO</a>
             <!-- <a class={`bold-text item ${isActiveRoute("/blog")}`} href="/blog">
@@ -25,9 +34,7 @@ function isActiveRoute(route: string): string {
             <a class={`bold-text item ${isActiveRoute("/login")}`} href="/login">
               LOGIN</a
             >
-            <a class={`bold-text item btn2 ${isActiveRoute("/register")}`} href="/registro">
-              REGíSTRESE</a
-            >
+            <BridgeURL client:load backgroundColor="var(--secondary-500)" color="white" url="/registro" text="REGÍSTRATE"/>
           </div>
     </div>
 </div>
