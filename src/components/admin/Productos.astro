@@ -1,0 +1,52 @@
+---
+import ProductsList from "./products/ProductsList.svelte";
+---
+<div class="admin-client">
+    <h4>Productos</h4>
+    <div class="table-modificator">
+        <!--<div class="mostrar">
+            <p class="small-text">Mostrar:</p>
+            <select class="small-text" name="cantidad-pag" id="cantidad-pag">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select>
+        </div> -->
+        <ProductsList client:load />
+        <a class="btn1 button-text" href="/admin/productos/agregar">Añadir Producto</a>
+    </div>
+</div>
+
+
+<style>
+    .admin-client{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 48px 32px;
+        gap: 32px;
+        background: var(--light);
+    }
+    
+    .admin-client h4{
+        color: var(--primary-900);
+    }
+
+    .admin-client .table-modificator{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 32px;
+
+        width: 100%;
+    }
+
+    .table-modificator .mostrar{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
+    }
+</style>

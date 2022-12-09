@@ -1,0 +1,76 @@
+---
+import IconFlujo from "../svg/Menu-Client/icon-flujo.astro";
+import IconInventario from "../svg/Menu-Client/icon-inventario.astro";
+import IconReporte from "../svg/Menu-Client/icon-reporte.astro";
+import IconVenta from "../svg/Menu-Client/icon-venta.astro";
+---
+
+<div>
+    <div class="menu-client">
+        <img src="/images/logoMenu.png" alt="Yarashop" width="120px">
+        
+        <div class="items">
+            <a class="item-menu" href="/clients">
+                <IconFlujo/>
+                <p class="text">Flujos</p>
+            </a>
+
+
+            <a class="item-menu" href="/clients/ventas">
+                <IconVenta/>
+                <p class="text">Ventas</p>
+            </a>
+
+            <a class="item-menu" href="/clients/inventario">
+                <IconInventario/>
+                <p class="text">Inventario</p>
+            </a>
+
+            <a class="item-menu" href="/clients/reportes">
+                <IconReporte/>
+                <p class="text">Reportes</p>
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .menu-client{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 32px 16px 48px;
+        gap: 37px;
+
+        width: 200px;
+        min-height: 100vh;
+        /* min-height: max-content; */
+        background: var(--gradient-purple);
+    }
+
+    .items{
+        /* Auto layout */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+
+        width: 100%;
+    }
+
+    .items .item-menu{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 16px;
+        gap: 8px;
+
+        min-width: 100px;
+        border-radius: 8px;
+        color: var(--light);
+    }
+
+    .items .item-menu:hover{
+        background: var(--primary-500);
+    }
+</style>

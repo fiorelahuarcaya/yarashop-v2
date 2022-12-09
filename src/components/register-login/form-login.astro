@@ -1,0 +1,86 @@
+---
+
+---
+
+<h2>Inicia Sesión</h2>
+<div class="form">
+    <div class="input-RL">
+        <label class="text" for="correo">Correo Electrónico</label>
+        <input class="text" type="text" name="correo" id="correo">
+    </div>
+    <div class="input-RL">
+        <label class="text" for="contra">Contraseña</label>
+        <input class="text" type="password" name="contra" id="contra">
+    </div>
+</div>
+<button  class="btn1 button-text" onclick="iniciarSesion()">
+    <p>Iniciar</p>
+</button>
+
+<div class="links">
+    <div class="register">
+        <p>¿No tienes una cuenta?</p>
+        <a href="/registro" class="link-text">Regístrate</a>
+    </div>
+    <a href="">¿Olvidaste tu contraseña?</a>
+</div>
+
+
+<script is:inline>
+    function iniciarSesion()
+    {
+        window.location = "/admin/dashboard";
+    }
+</script>
+
+<style>
+    .form{
+        /* Auto layout */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 32px;
+    }
+
+    .input-RL{
+        /* Auto layout */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0px;
+        gap: 8px;
+    }
+
+    input{
+        width: 400px;
+        background: #C4C4C4;
+        opacity: 0.6;
+        border-radius: 6px;
+        padding: 12px;
+
+        border: none;
+        outline: none;
+    }
+
+    input:focus{
+        border: solid var(--dark) 1px;
+    }
+    .links{
+        /* Auto layout */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+
+        color: var(--text);
+    }
+
+    .links .register{
+        /* Auto layout */
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+</style>

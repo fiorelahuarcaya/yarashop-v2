@@ -1,0 +1,9 @@
+---
+interface Props {
+    height: string
+}
+
+const { height } = Astro.props;
+---
+
+<img src="/images/Logo.png" alt="Logo" height={height}>
