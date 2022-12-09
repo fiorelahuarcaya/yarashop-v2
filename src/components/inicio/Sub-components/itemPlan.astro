@@ -1,4 +1,5 @@
 ---
+import BridgeURL from "../../../design-patterns/BridgeURL"
 interface Props {
   title: string;
   price: string;
@@ -25,7 +26,7 @@ const { type } = Astro.props;
         <p>{item}</p>
     ))}
   </div>
-    <div class={`btn1 ${type}`}><p class="button-text">Empieza</p></div>
+    <BridgeURL client:load backgroundColor="var(--primary-600)" color="white" url="/registro" text="EMPIEZA"/>
 </div>
 
 <style>
