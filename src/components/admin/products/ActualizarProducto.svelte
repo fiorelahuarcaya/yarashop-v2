@@ -6,7 +6,7 @@
     editProduct,
   } from "../../../firebase/routesProducts";
   import Spinner from "../../Spinner.svelte";
-  import { Proveedor } from "../../../types/Proveedor";
+  import type { Proveedor } from "../../../types/Proveedor";
   import { getProveeByID } from "../../../firebase/routesProveedor";
 
   let idProducto = "";

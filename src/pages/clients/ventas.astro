@@ -1,4 +1,5 @@
 ---
+import VentaLista from "../../components/client/ventaLista.svelte";
 import LayoutClient from "../../layouts/layout-client.astro";
 ---
 
@@ -6,4 +7,6 @@ import LayoutClient from "../../layouts/layout-client.astro";
     title="Ventas"
     section="Ventas"
 >
+
+<VentaLista client:load/>
 </LayoutClient>
