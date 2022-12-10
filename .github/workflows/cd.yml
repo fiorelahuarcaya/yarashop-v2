@@ -1,0 +1,27 @@
+name: Deploy to Firebase
+"on":
+  workflow_run:
+    workflows: ["CI"]
+    branches: [main]
+    types:
+      - completed
+jobs:
+  build_and_deploy:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: npm install
+      - run: npm run build
+      - run: touch ./dist/.nojekyll
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_YARASHOP_FE6D0 }}"
+          channelId: live
+          projectId: yarashop-fe6d0
