@@ -1,3 +1,5 @@
+import type { Timestamp } from "firebase/firestore";
+
 export type ProductoTienda = {
   idProducto: string;
   nombre: string;
@@ -18,8 +20,7 @@ export type ItemLista = {
 
 export type Venta = {
   idVenta: string;
-  fecha: string;
-  hora: string;
+  fechaHora: Timestamp;
   deuda: number;
   nombreCliente: string;
   total: number;

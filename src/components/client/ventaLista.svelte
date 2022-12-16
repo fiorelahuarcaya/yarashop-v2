@@ -1,11 +1,10 @@
 <script lang="ts">
+  import { Timestamp } from "firebase/firestore";
   import { onMount } from "svelte";
-  import { getProducts } from "../../firebase/routesProducts";
   import {
     getProductoByTienda,
     createVenta,
   } from "../../firebase/routesTienda";
-  import { Producto } from "../../types/Producto";
   import type {
     ProductoTienda,
     Tienda,
@@ -21,8 +20,7 @@
 
   let venta: Venta = {
     idVenta: "",
-    fecha: "",
-    hora: "",
+    fechaHora: Timestamp.now(),
     nombreCliente: "-",
     deuda: 0,
     total: 0,
@@ -44,19 +42,7 @@
 
   const vender = () => {
     let fechaHora = new Date();
-
-    venta.fecha =
-      fechaHora.getDate() +
-      "-" +
-      fechaHora.getMonth() +
-      "-" +
-      fechaHora.getFullYear();
-    venta.hora =
-      fechaHora.getHours() +
-      ":" +
-      fechaHora.getMinutes() +
-      ":" +
-      fechaHora.getSeconds();
+    venta.fechaHora = Timestamp.now();
     venta.total = venta.lista
       .map((item) => item.total)
       .reduce((prev, curr) => prev + curr, 0);

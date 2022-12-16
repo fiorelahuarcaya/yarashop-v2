@@ -1,11 +1,14 @@
 <script lang="ts">
+  import IconCalendar from "../svg/icon-calendar.svelte";
   import Spinner from "../Spinner.svelte";
   import { onMount } from "svelte";
-  import { getProducts } from "../../firebase/routesProducts";
   import { getVentaByTienda } from "../../firebase/routesReportes";
   import type { Venta, ItemLista } from "../../types/Tienda";
 
   let ventasList: Venta[] = [];
+  let today = new Date();
+  let fecha =
+    today.getDate() + "-" + (today.getMonth() + 1) + "-" + today.getFullYear();
 
   const headers = [
     "N°",
@@ -23,6 +26,8 @@
       (doc) => {
         let data = doc.data({ serverTimestamps: "estimate" }) as Venta;
         data["idVenta"] = doc.id;
+        
+        if()
         ventasList = [...ventasList, data];
       }
     );
@@ -30,7 +35,13 @@
 </script>
 
 <div class="reporte-diario">
-  <h4>Reporte del día:</h4>
+  <div class="header">
+    <h4>Reporte del día:</h4>
+    <div class="fecha">
+      <span>{fecha}</span>
+      <IconCalendar />
+    </div>
+  </div>
   <div class="table-modificator" />
 
   {#if ventasList.length > 0}
@@ -48,7 +59,7 @@
           <td>{venta.nombreCliente}</td>
           <td> S/. {venta.total}</td>
           <td>S/. {venta.deuda}</td>
-          <td>{venta.hora}</td>
+          <td>{venta.fechaHora}</td>
           <td
             ><svg
               width="16"
@@ -77,8 +88,32 @@
     flex-direction: column;
     align-items: flex-start;
     padding: 48px 32px;
-    gap: 32px;
+    gap: 24px;
     background: var(--light);
+  }
+
+  .reporte-diario .header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    gap: 24px;
+  }
+
+  .reporte-diario .header .fecha {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 4px 16px;
+    gap: 8px;
+    background-color: var(--primary-100);
+    border-radius: 4px;
+
+    font-family: "Raleway";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 140%;
   }
 
   .reporte-diario h4 {

@@ -24,3 +24,12 @@ import {
       
         return docsSnap;
       }
+
+      export async function getReporteDiarioByTienda(idTienda: string , fecha:string) {
+        const productsCollection = collection(db, `Tienda/${idTienda}/Venta`);
+      
+        const q = query(productsCollection, where("fechaHora", "==",fecha));
+        const docsSnap = await getDocs(q);
+      
+        return docsSnap;
+      }
