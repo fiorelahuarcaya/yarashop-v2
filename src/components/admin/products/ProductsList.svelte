@@ -75,21 +75,6 @@
 {/if}
 
 <style>
-  table {
-    border-top: 2px solid var(--dark);
-    border-bottom: 2px solid var(--dark);
-  }
-
-  table th {
-    padding: 8px;
-    background-color: var(--primary-50);
-  }
-
-  table td {
-    padding: 8px 16px;
-    text-align: left;
-  }
-
   .btn1,
   .btn2 {
     padding: 8px;

@@ -1,0 +1,57 @@
+---
+import IconDay from "../svg/Reporte/icon-day.astro";
+import IconMonth from "../svg/Reporte/icon-month.astro";
+import IconCoin from "../svg/Reporte/icon-coin.astro";
+import IconInventary from "../svg/Reporte/icon-inventary.astro";
+---
+
+<div class="lista-reporte">
+    <a href="/clients/reportes/reporte-diario" class="item-reporte item1"><IconDay /> <h4>Reporte del día</h4></a>
+    <a href="/clients/reportes/reporte-mensual" class="item-reporte item2"><IconMonth /> <h4>Reporte del mes</h4></a>
+    <a href="/clients/reportes/reporte-inventario" class="item-reporte item2"><IconInventary /> <h4>Inventario</h4></a>
+    <a href="/clients/reportes/reporte-deudas" class="item-reporte item1"><IconCoin /> <h4>Reporte de deudas</h4></a>
+</div>
+
+
+<style>
+    .lista-reporte{
+        margin-top: 48px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+
+    .lista-reporte .item-reporte{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 32px;
+        gap: 16px;
+
+        width: 280px;
+        height: 180px;
+
+        color: var(--light);
+        box-shadow: inset 0px -4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 4px;
+    }
+
+    .lista-reporte .item1{
+        background-color: var(--primary-500);
+    }
+
+    .lista-reporte .item1:hover{
+        background-color: var(--primary-600);
+        box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    .lista-reporte .item2{
+        background-color: var(--secondary-500);
+    }
+
+    .lista-reporte .item2:hover{
+        background-color: var(--secondary-600);
+        box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.25);
+    }
+</style>
