@@ -21,14 +21,26 @@
   ];
 
   onMount(async () => {
+    const url = new URL(location.href);
+    const date = url.searchParams.get("date");
+    console.log(date);
+    if (date != null) {
+      fecha = date;
+    }
     //TODO: Cambiar el estático
     let dataTienda = (await getVentaByTienda("Wv26f1xfsB7DQOZipYuc")).forEach(
       (doc) => {
         let data = doc.data({ serverTimestamps: "estimate" }) as Venta;
         data["idVenta"] = doc.id;
-        
-        if()
-        ventasList = [...ventasList, data];
+
+        let day = data.fechaHora.toDate().getDate();
+        let month = data.fechaHora.toDate().getMonth() + 1;
+        let year = data.fechaHora.toDate().getFullYear();
+        let key = `${day}-${month}-${year}`;
+
+        if (key === fecha) {
+          ventasList = [...ventasList, data];
+        }
       }
     );
   });
@@ -42,7 +54,6 @@
       <IconCalendar />
     </div>
   </div>
-  <div class="table-modificator" />
 
   {#if ventasList.length > 0}
     <table>
@@ -59,7 +70,13 @@
           <td>{venta.nombreCliente}</td>
           <td> S/. {venta.total}</td>
           <td>S/. {venta.deuda}</td>
-          <td>{venta.fechaHora}</td>
+          <td
+            >{venta.fechaHora.toDate().getHours() +
+              ":" +
+              venta.fechaHora.toDate().getMinutes() +
+              ":" +
+              venta.fechaHora.toDate().getSeconds()}</td
+          >
           <td
             ><svg
               width="16"

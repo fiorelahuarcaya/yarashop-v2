@@ -1,11 +1,11 @@
 ---
 import LayoutClient from "../../../layouts/layout-client.astro";
-import ReportesList from "../../../components/client/reportes-list.astro";
+import ReporteInventario from "../../../components/client/reporte-inventario.svelte";
 ---
 
 <LayoutClient
     title="Reportes"
     section="Reporte de inventario"
 >
-  
+  <ReporteInventario client:load />
 </LayoutClient>

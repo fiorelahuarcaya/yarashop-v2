@@ -75,7 +75,11 @@
           <td>{i + 1}</td>
           <td>{key}</td>
           <td>{value}</td>
-          <td><IconDetail /></td>
+          <td
+            ><a href={`/clients/reportes/reporte-diario?date=${key}`}>
+              <IconDetail /></a
+            ></td
+          >
         </tr>
       {/each}
     </table>
