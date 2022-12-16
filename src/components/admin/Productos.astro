@@ -4,16 +4,6 @@ import ProductsList from "./products/ProductsList.svelte";
 <div class="admin-client">
     <h4>Productos</h4>
     <div class="table-modificator">
-        <!--<div class="mostrar">
-            <p class="small-text">Mostrar:</p>
-            <select class="small-text" name="cantidad-pag" id="cantidad-pag">
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="25">25</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
-            </select>
-        </div> -->
         <ProductsList client:load />
         <a class="btn1 button-text" href="/admin/productos/agregar">Añadir Producto</a>
     </div>

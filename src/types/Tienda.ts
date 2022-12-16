@@ -12,11 +12,17 @@ export type ProductoTienda = {
 export type ItemLista = {
   cantidad: number;
   idProducto: string;
+  nombreProducto: string;
   total: number;
 };
 
 export type Venta = {
-  fechaHora: string;
+  idVenta: string;
+  fecha: string;
+  hora: string;
+  deuda: number;
+  nombreCliente: string;
+  total: number;
   lista: ItemLista[];
 };
 

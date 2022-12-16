@@ -14,18 +14,22 @@
   } from "../../types/Tienda";
 
   let idProducto = "";
-  let nombre = "";
+  let nombre = "-";
   let precioVentaR = 0;
   let cantidad = 1;
   let total = 0;
 
   let venta: Venta = {
-    fechaHora: "",
+    idVenta: "",
+    fecha: "",
+    hora: "",
+    nombreCliente: "-",
+    deuda: 0,
+    total: 0,
     lista: [],
   };
 
   let productList: ProductoTienda[] = [];
-  let tiendaList: Tienda[] = [];
 
   onMount(async () => {
     //TODO: Cambiar el estático
@@ -39,7 +43,24 @@
   });
 
   const vender = () => {
-    venta.fechaHora = new Date() + "";
+    let fechaHora = new Date();
+
+    venta.fecha =
+      fechaHora.getDate() +
+      "-" +
+      fechaHora.getMonth() +
+      "-" +
+      fechaHora.getFullYear();
+    venta.hora =
+      fechaHora.getHours() +
+      ":" +
+      fechaHora.getMinutes() +
+      ":" +
+      fechaHora.getSeconds();
+    venta.total = venta.lista
+      .map((item) => item.total)
+      .reduce((prev, curr) => prev + curr, 0);
+
     console.log(venta);
     createVenta("Wv26f1xfsB7DQOZipYuc", venta);
     alert("Venta hecha");
@@ -63,9 +84,11 @@
     let item: ItemLista = {
       cantidad: cantidad,
       idProducto: idProducto,
+      nombreProducto: nombre,
       total: total,
     };
-    console.log(cantidad);
+
+    console.log(nombre);
 
     venta.lista = [...venta.lista, item];
 
