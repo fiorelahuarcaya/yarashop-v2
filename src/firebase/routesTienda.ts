@@ -89,6 +89,7 @@ export async function createVenta(idTienda: string, ventaData: Venta) {
 
     await updateDoc(productRef, {
       cantidad: docProducto.data().cantidad - item.cantidad,
+      vendidos: docProducto.data().vendidos + item.cantidad,
     });
   });
 

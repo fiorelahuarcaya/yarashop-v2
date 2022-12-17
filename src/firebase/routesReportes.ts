@@ -19,7 +19,8 @@ import {
     export async function getVentaByTienda(idTienda: string) {
         const productsCollection = collection(db, `Tienda/${idTienda}/Venta`);
       
-        const q = query(productsCollection);
+        const q = query(productsCollection, orderBy("fechaHora"));
+
         const docsSnap = await getDocs(q);
       
         return docsSnap;
