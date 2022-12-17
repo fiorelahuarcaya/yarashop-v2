@@ -1,0 +1,19 @@
+---
+import VentasDia from "./dashboard/ventas-dia.svelte";
+import VentasMes from "./dashboard/ventas-mes.svelte";
+import MasVendidos from "./dashboard/mas-vendidos.svelte";
+---
+
+<div class="graficos">
+  <VentasDia client:load />
+  <MasVendidos client:load />
+  <VentasMes client:load />
+</div>
+
+<style>
+  .graficos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+</style>

@@ -9,6 +9,7 @@ export type ProductoTienda = {
   precioVentaR: number;
   rucProvee: string;
   cantidad: number;
+  vendidos: number;
 };
 
 export type ItemLista = {
