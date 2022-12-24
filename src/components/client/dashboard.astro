@@ -2,14 +2,18 @@
 import VentasDia from "./dashboard/ventas-dia.svelte";
 import VentasMes from "./dashboard/ventas-mes.svelte";
 import MasVendidos from "./dashboard/mas-vendidos.svelte";
+import Indicadores from "./dashboard/indicadores.svelte";
 ---
 
-<div class="graficos">
-  <VentasDia client:load />
-  <MasVendidos client:load />
-  <VentasMes client:load />
+<div class="dashboard">
+  <Indicadores client:load></Indicadores>
+  <div class="graficos">
+    <VentasDia client:load />
+    <MasVendidos client:load />
+    <VentasMes client:load />
+  </div>
+  
 </div>
-
 <style>
   .graficos {
     display: grid;
