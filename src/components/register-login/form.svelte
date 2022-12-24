@@ -1,38 +1,20 @@
 <script>
   import { createUser } from "../../firebase/authentication";
 
+  import sha256 from "crypto-js/sha256";
+  import hmacSHA512 from "crypto-js/hmac-sha512";
+  import Base64 from "crypto-js/enc-base64";
+
+  const privateKey = "1111111111111121211";
+
   let correo = "";
   let contra = "";
 
-  function continuar1() {
-    const r1 = document.getElementsByClassName("r1");
-    for (let i = 0; i < r1.length; i++) {
-      r1[i].style.display = "none";
-    }
-
-    const r2 = document.getElementsByClassName("r2");
-
-    for (let i = 0; i < r2.length; i++) {
-      r2[i].style.display = "flex";
-    }
-  }
-
-  function continuar2() {
-    const r2 = document.getElementsByClassName("r2");
-
-    for (let i = 0; i < r2.length; i++) {
-      r2[i].style.display = "none";
-    }
-
-    const r3 = document.getElementsByClassName("r3");
-
-    for (let i = 0; i < r3.length; i++) {
-      r3[i].style.display = "flex";
-    }
-  }
-
   function registrar() {
-    createUser(correo, contra);
+    const hashDigest = sha256(contra);
+    const hmacDigest = Base64.stringify(hmacSHA512(hashDigest, privateKey));
+    console.log(hmacDigest);
+    createUser(correo, hmacDigest);
   }
 </script>
 
@@ -40,8 +22,7 @@
   <h2>Registro</h2>
 </div>
 
-<div class="form">
-  <p class="bold-text">* Campos requeridos</p>
+<form action="/login" class="form" method="post">
   <div class="inputs r1">
     <div class="input-RL">
       <label class="text" for="name">Nombre Completo</label>
@@ -50,14 +31,16 @@
         type="text"
         name="name"
         id="name"
-        pattern="[a-zA-Z]"
+        pattern="^[a-zA-Z ]*$"
+        maxlength="60"
+        title="Solo se permiten letras"
       />
     </div>
     <div class="input-RL">
       <label class="email" for="email">Correo Electrónico</label>
       <input
         class="text"
-        type="text"
+        type="email"
         name="email"
         id="email"
         bind:value={correo}
@@ -65,14 +48,31 @@
     </div>
     <div class="input-RL">
       <label class="text" for="telefono">Numero de Teléfono</label>
-      <input class="text" type="text" name="telefono" id="telefono" />
+      <input
+        class="text"
+        type="text"
+        name="telefono"
+        id="telefono"
+        pattern="^[0-9]*$"
+        minlength="10"
+        maxlength="60"
+        title="Solo se permiten números"
+      />
     </div>
   </div>
 
   <div class="inputs r2">
     <div class="input-RL">
       <label class="text" for="direccion">Dirección</label>
-      <input class="text" type="text" name="direccion" id="direccion" />
+      <input
+        class="text"
+        type="text"
+        name="direccion"
+        id="direccion"
+        minlength="10"
+        maxlength="60"
+        title="Solo se permiten números"
+      />
     </div>
     <div class="input-RL">
       <label class="text" for="pais">País</label>
@@ -81,7 +81,7 @@
         type="text"
         name="pais"
         id="pais"
-        pattern="[a-zA-Z]"
+        pattern="^[a-zA-Z ]*$"
       />
     </div>
     <div class="input-RL">
@@ -91,6 +91,8 @@
         type="password"
         name="pswd"
         id="pswd"
+        minlength="8"
+        pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])$"
         bind:value={contra}
       />
     </div>
@@ -109,27 +111,28 @@
   <div class="inputs r3">
     <div class="input-RL">
       <label class="text" for="susc">Tipo de Suscripción</label>
-      <input class="text" type="text" name="susc" id="susc" />
+      <select name="susc" id="susc">
+        <option value="FREE">FREE</option>
+        <option value="PREMIUM">PREMIUM</option>
+        <option value="PLUS PLUS">PLUS PLUS</option>
+      </select>
     </div>
 
     <div class="input-RL">
       <label class="text" for="razonSocial">Razón Social</label>
-      <input class="text" type="text" name="razonSocial" id="razonSocial" />
+      <input
+        class="text"
+        type="text"
+        name="razonSocial"
+        id="razonSocial"
+        pattern="^[a-zA-Z ]*$"
+        maxlength="60"
+        title="Solo se permiten letras"
+      />
     </div>
   </div>
-</div>
-
-<button on:click={continuar1} class="btn1 r1 ">
-  <p class="button-text">Continuar</p>
-</button>
-
-<button on:click={continuar2} class="btn1 r2 ">
-  <p class="button-text">Continuar</p>
-</button>
-
-<button on:click={registrar} class="btn1 r3 ">
-  <p class="button-text">Registrar</p>
-</button>
+  <input type="submit" value="Registrar" class="btn1 button-text" />
+</form>
 
 <div class="login">
   <p>¿Tienes una cuenta?</p>
@@ -141,7 +144,7 @@
     /* Auto layout */
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 32px;
   }
 
@@ -154,7 +157,10 @@
     gap: 8px;
   }
 
-  input {
+  select,
+  input[type="text"],
+  input[type="password"],
+  input[type="email"] {
     width: 400px;
     background: #c4c4c4;
     opacity: 0.6;
@@ -176,19 +182,6 @@
     align-items: flex-start;
     gap: 32px;
   }
-
-  .r1 {
-    display: flex;
-  }
-
-  .r2 {
-    display: none;
-  }
-
-  .r3 {
-    display: none;
-  }
-
   .login {
     /* Auto layout */
     display: flex;

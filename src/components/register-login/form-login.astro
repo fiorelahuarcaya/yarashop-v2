@@ -3,19 +3,18 @@
 ---
 
 <h2>Inicia Sesión</h2>
-<div class="form">
+<form action="/clients" class="form" method="post">
     <div class="input-RL">
-        <label class="text" for="correo">Correo Electrónico</label>
-        <input class="text" type="text" name="correo" id="correo">
+        <label class="email" for="correo">Correo Electrónico</label>
+        <input class="email" type="email" name="correo" id="correo">
     </div>
     <div class="input-RL">
         <label class="text" for="contra">Contraseña</label>
         <input class="text" type="password" name="contra" id="contra">
     </div>
-</div>
-<button  class="btn1 button-text" onclick="iniciarSesion()">
-    <p>Iniciar</p>
-</button>
+    <input type="submit" value="Iniciar" class="btn1 button-text"/>
+</form>
+
 
 <div class="links">
     <div class="register">
@@ -29,7 +28,7 @@
 <script is:inline>
     function iniciarSesion()
     {
-        window.location = "/admin/dashboard";
+        window.location = "/clients";
     }
 </script>
 
