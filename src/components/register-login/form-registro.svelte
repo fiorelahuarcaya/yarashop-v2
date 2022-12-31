@@ -81,7 +81,7 @@
         type="text"
         name="pais"
         id="pais"
-        pattern="[a-zA-Z]"
+        pattern="[a-zA-Z]*"
       />
     </div>
     <div class="input-RL">
