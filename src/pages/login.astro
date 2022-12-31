@@ -1,8 +1,8 @@
 ---
 import LayoutRl from "../layouts/layout-RL.astro";
-import FormLogin from "../components/register-login/form-login.astro";
+import FormLogin from "../components/register-login/form-login.svelte";
 ---
 
 <LayoutRl title="Login"> 
-    <FormLogin></FormLogin>
+    <FormLogin client:load></FormLogin>
 </LayoutRl>

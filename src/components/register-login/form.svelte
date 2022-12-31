@@ -13,7 +13,6 @@
   function registrar() {
     const hashDigest = sha256(contra);
     const hmacDigest = Base64.stringify(hmacSHA512(hashDigest, privateKey));
-    console.log(hmacDigest);
     createUser(correo, hmacDigest);
   }
 </script>
@@ -54,7 +53,6 @@
         name="telefono"
         id="telefono"
         pattern="^[0-9]*$"
-        minlength="10"
         maxlength="60"
         title="Solo se permiten números"
       />
@@ -71,7 +69,6 @@
         id="direccion"
         minlength="10"
         maxlength="60"
-        title="Solo se permiten números"
       />
     </div>
     <div class="input-RL">
@@ -92,7 +89,6 @@
         name="pswd"
         id="pswd"
         minlength="8"
-        pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])$"
         bind:value={contra}
       />
     </div>
@@ -131,7 +127,7 @@
       />
     </div>
   </div>
-  <input type="submit" value="Registrar" class="btn1 button-text" />
+  <button class="btn1 button-text" on:click={registrar}>Registrar</button>
 </form>
 
 <div class="login">
