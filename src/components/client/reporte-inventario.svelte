@@ -26,6 +26,8 @@
     "Proveedor",
     "Costo",
     "Venta",
+    "Cantidad",
+    "Vendidos",
     "Acciones",
   ];
 </script>
@@ -50,6 +52,8 @@
           <td>{product.rucProvee}</td>
           <td>S/. {product.precioCosto}</td>
           <td>S/. {product.precioVentaR}</td>
+          <td>{product.cantidad}</td>
+          <td>{product.vendidos}</td>
           <td>
             <button class="btn1"> <IconConfig /></button>
             <button class="btn2"><IconDelete /></button>
